@@ -39,7 +39,15 @@ var motionData= db.ref("/motionData")
 
 stateRef.limitToLast(50).on('child_changed', toggle);
     
-
+function toggle(data){
+  var val = data.val();
+  if (val.type=='led'){
+  toggleLed(val.state);
+  }
+  else{
+  toggleMotion(val.state)
+  }
+}
 
 
 function toggleLed (state) {

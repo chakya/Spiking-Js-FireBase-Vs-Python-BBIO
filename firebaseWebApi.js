@@ -66,3 +66,64 @@ Server.prototype.motionDB = function () {
     // ledState.limitToLast(50).on('child_changed', setMessage);
 //   ;}
     
+     function ledSwitch(){
+       if (led.checked===true) {
+         console.log('onled')
+        firebase.database().ref("/State").update({'/led/state':1, '/led/type':'led'});
+       }
+      else {
+        console.log('off')
+        firebase.database().ref("/State").update({'/led/state':0, '/led/type':'led'});
+      }
+
+     }
+
+function motionSwitch(){
+       if (motion.checked===true) {
+         console.log('on')
+        firebase.database().ref("/State").update({'/motion/state':1, '/motion/type':'motion'});
+       }
+      else {
+        console.log('off')
+        firebase.database().ref("/State").update({'/motion/state':0, '/motion/type':'motion'});
+      }
+
+     }
+
+
+
+
+  // // Saves a new message on the Firebase DB.
+  // Server.prototype.saveMessage = function () {
+  //   // Add a new message entry to the Firebase Database.
+  //   this.messagesRef.push({
+  //     action: 'off',
+  //     id: 2,
+  //     time: 123456, // you can use Date.now()
+  //     type: 'motion'
+  //   }).then(function () {
+  //     console.log('Done')
+  //   }.bind(this)).catch(function (error) {
+  //     console.error('Error writing new message to Firebase Database', error);
+  //   });
+  // };
+
+  // Server.prototype.displayMessage = function (action, id, time, type) {
+  //  document.getElementById('msg').innerHTML = action + '  ' + time + '  ' + type;
+  // };
+
+
+  // Checks that the Firebase SDK has been correctly setup and configured.
+  Server.prototype.checkSetup = function () {
+    if (!window.firebase || !(firebase.app instanceof Function) || !window.config) {
+      window.alert('You have not configured and imported the Firebase SDK. ' +
+        'Make sure you go through the codelab setup instructions.');
+    } else if (config.storageBucket === '') {
+      window.alert('Your Firebase Storage bucket has not been enabled.');
+    }
+  };
+
+
+
+
+
