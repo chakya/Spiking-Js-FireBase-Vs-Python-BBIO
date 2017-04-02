@@ -124,6 +124,22 @@ function motionSwitch(){
   };
 
 
+window.onload = function () {
+  window.Server = new Server();
+};
+
+var motionDataRef = firebase.database().ref('/motionData');
+motionDataRef.on('value', function(snapshot) {
+  updateHTML(snapshot.val());
+});
+
+function updateHTML(data){
+  console.log('update running')
+  motionCount.innerHTML=data.motion;
+  longHTML.innerHTML=data.longMotion;
+  shortHTML.innerHTML=data.shortMotion;
+  intruderHTML.innerHTML=data.intruder;
+}
 
 
 
