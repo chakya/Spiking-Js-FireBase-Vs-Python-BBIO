@@ -110,3 +110,27 @@ function toggleMotion(state){
                   currentCount=0;
               }
     }
+if (seq4=='LSLL'){
+  console.log('Intruder Alert!!')
+   motionData.once('value', function(Snapshot) {
+    intruderCount = parseInt(Snapshot.val().intruder);
+    intruderCount+=1
+    motionData.update({'/intruder':intruderCount});
+    seq4='0000'
+  });
+}
+else{
+  console.log('no intruder')
+}
+      
+    }
+
+  }
+  else
+  {
+      // if unchecked stop interval
+      console.log('stop');
+      clearInterval(motionInterval);
+  }
+
+}
