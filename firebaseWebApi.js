@@ -90,7 +90,10 @@ function motionSwitch(){
 
      }
 
-
+function reset(){
+  console.log('reset')
+  firebase.database().ref("/motionData").update({'/longMotion':0, '/shortMotion':0,'/intruder':0,'/motion':0});
+}
 
 
   // // Saves a new message on the Firebase DB.
