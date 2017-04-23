@@ -10,13 +10,13 @@ function Server() {
 
 
 
-
+//Initialise database
   Server.prototype.initFirebase = function () {
     this.database = firebase.database();
     this.storage = firebase.storage();
   };
 
-
+//Update Firebase when button is toggled
 function motionSwitch(){
        if (motion.checked===true) {
          console.log('on')
@@ -50,6 +50,7 @@ motionDataRef.on('value', function(snapshot) {
   updateHTML(snapshot.val());
 });
 
+//Update HTML with Time
 function updateHTML(data){
   console.log(data.in)
   statusHTML.innerHTML=data.in;
