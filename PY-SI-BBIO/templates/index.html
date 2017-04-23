@@ -719,7 +719,18 @@ var motionCount=document.getElementById('motionCount')
 var longHTML=document.getElementById('longMotionHTML')
 var shortHTML=document.getElementById('shortMotionHTML')
 
-
+epoch=Math.round(new Date().getTime()/1000.0)
+var myDate = new Date( epoch *1000);
+console.log(epoch)
+console.log(myDate.toGMTString());
+    function ledSwitch(){
+       if (led.checked===true) {
+        socket.emit("ledToggle", 1)
+    }
+    else {
+      socket.emit("ledToggle", 0)
+    }
+    };
     
 function motionSwitch(){
        if (motion.checked===true) {
