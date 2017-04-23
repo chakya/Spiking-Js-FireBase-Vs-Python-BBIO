@@ -13,6 +13,17 @@ def index():
     """Serve the client-side application."""
     return render_template('index.html')
 
+@sio.on('connect')
+def connect(sid, environ):
+    print('connect ', sid)
+
+
+
+@sio.on('disconnect')
+def disconnect(sid):
+    t.cancel()
+    print('disconnect ', sid)
+
 if __name__ == '__main__':
     motion = "P8_7"
     GPIO.setup(motion, GPIO.IN)
