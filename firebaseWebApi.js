@@ -49,3 +49,16 @@ var motionDataRef = firebase.database().ref('/PIR');
 motionDataRef.on('value', function(snapshot) {
   updateHTML(snapshot.val());
 });
+
+function updateHTML(data){
+  console.log(data.in)
+  statusHTML.innerHTML=data.in;
+  epoch=Math.round(new Date().getTime()/1000.0)
+  var myDate = new Date( epoch *1000);
+  time=epoch-parseInt(data.time)
+  console.log(time)
+  timeHTML.innerHTML=time;
+}
+
+
+
