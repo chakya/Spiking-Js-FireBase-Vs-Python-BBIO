@@ -746,7 +746,11 @@ socket.on('motionDetected', function(state){
   console.log(state)
 });
 
-
+socket.on('checkTime', function(epoch){
+  epoch2=Math.round(new Date().getTime()/1000.0)
+  timeTaken=epoch2-epoch
+  console.log(timeTaken)
+});
 
 socket.on('longMotionPoll', function(longCount, motionC){
   longHTML.innerHTML=longCount;
