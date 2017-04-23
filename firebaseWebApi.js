@@ -45,6 +45,7 @@ window.onload = function () {
   window.Server = new Server();
 };
 
-
-
-
+var motionDataRef = firebase.database().ref('/PIR');
+motionDataRef.on('value', function(snapshot) {
+  updateHTML(snapshot.val());
+});
