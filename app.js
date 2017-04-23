@@ -3,12 +3,7 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var b = require('bonescript');
-var led = "P8_8";
-b.pinMode(led, 'out');
 var motion = "P8_7";
-var longCount=0;
-var motionInterval=null;
-b.pinMode(motion, b.INPUT);
 
 //Send index.html for root directory
 app.get('/', function (req, res) 
@@ -24,17 +19,6 @@ app.get('/', function (req, res)
 io.on('connection', function (socket) 
 {
     console.log('Get a connection');
-    socket.on('ledToggle', function (status) 
-    {
-        // Toggle led on off
-        console.log('ledToggle')
-        b.digitalWrite(led, status);
-    });
-    //reset var in each connection
-     var motionCount=0;
-     var longCount=0;
-     var shortCount=0;
-     var currentCount=0;
      
     socket.on('motionToggle', function (status)
     {
