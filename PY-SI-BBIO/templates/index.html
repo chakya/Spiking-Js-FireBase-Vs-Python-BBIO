@@ -737,6 +737,38 @@ socket.on('motionDetected', function(state){
 
 
 
+socket.on('longMotionPoll', function(longCount, motionC){
+  longHTML.innerHTML=longCount;
+  motionCount.innerHTML=motionC;
+});
+
+socket.on('shortMotionPoll', function(shortCount, motionC){
+  shortHTML.innerHTML=shortCount;
+  motionCount.innerHTML=motionC;
+});
+
+//   var socket= io();
+//     toggle=document.getElementById("cmn-toggle-1"); //led
+
+//     function ledSwittch(){
+//       if (toggle.checked===true) {
+//         socket.emit("ledOn", 1)
+//     }
+//     else {
+//       socket.emit("ledOff", 0)
+//     }
+//     };
+
+// sensorToggle=document.getElementById("sensor");
+//         function sensor(){
+//       if (sensorToggle.checked===true) {
+//         socket.emit("sensor", 1)
+//     }
+//     else {
+//       socket.emit("sensor", 0)
+//     }
+//     };
+
   
 </script>
 </html>
