@@ -17,6 +17,13 @@ def index():
 def connect(sid, environ):
     print('connect ', sid)
 
+@sio.on('motionToggle')
+def ledToggle(sid, data):
+    global client
+    client=sio
+    client.emit('motionDetected',2)
+    print('motionToggle'+str(data) )
+
 
 
 @sio.on('disconnect')
