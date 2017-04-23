@@ -720,7 +720,22 @@ var longHTML=document.getElementById('longMotionHTML')
 var shortHTML=document.getElementById('shortMotionHTML')
 
 
-//     };
+    
+function motionSwitch(){
+       if (motion.checked===true) {
+        socket.emit("motionToggle", 1)
+    }
+    else {
+    
+      socket.emit("motionToggle", 0);
+    }
+    };
+
+socket.on('motionDetected', function(state){
+  console.log(state)
+});
+
+
 
   
 </script>
