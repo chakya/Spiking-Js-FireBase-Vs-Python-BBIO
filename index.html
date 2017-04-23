@@ -641,16 +641,6 @@ input.cmn-toggle-yes-no:checked + label:after {
 
         <div class="row">
           <div class="question">
-            Switch LED On/Off
-          </div>
-          <div class="switch">
-            <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox" onClick="ledSwitch()">
-            <label for="cmn-toggle-1"></label>
-          </div>
-        </div><!-- /row -->
-
-        <div class="row">
-          <div class="question">
             Switch Motion Sensor On/Off
           </div>
           <div class="switch">
@@ -659,43 +649,15 @@ input.cmn-toggle-yes-no:checked + label:after {
           </div>
         </div><!-- /row -->
 
-        <div class="row">
-          <div class="question">
-            motion detected
-          </div>
-          <div id="motionCount" style="text-align: center; width: 150px;">
-              0
-          </div>
-        </div><!-- /row -->
+<div>
+  <h1 style="text-align:center;">Status</h1>
+  <h1 id="status" style="text-align:center;"></h1>
+</div>
+<div>
+  <h1 style="text-align:center;">Response Time</h1>
+  <h1 id="time" style="text-align:center;"></h1>
+</div>
 
-        <div class="row">
-          <div class="question">
-            long motions
-          </div>
-          <div id="longMotionHTML" style="text-align: center; width: 150px;">
-               0
-          </div>
-        </div><!-- /row -->
-
-        <div class="row">
-          <div class="question">
-            Short motions
-          </div>
-          <div id="shortMotionHTML" style="text-align: center; width: 150px;">
-               0
-          </div>
-        </div><!-- /row -->
-
-        <div class="row">
-          <div class="question">
-            Intruder
-          </div>
-          <div id="intruderHTML" style="text-align: center; width: 150px;">
-               0
-          </div>
-        </div><!-- /row -->
-      <button type="button" onClick="reset()">Reset</button>
-      </div>
 
     </div>
   </div><!-- #main -->
