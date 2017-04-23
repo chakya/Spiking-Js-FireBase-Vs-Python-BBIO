@@ -6,6 +6,22 @@ import threading
 import eventlet
 import time
 epoch=time.time()
+print(time.time())
+print(time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(epoch)))
+
+eventlet.monkey_patch()
+class setInterval():
+    def __init__(self, func, sec):
+        def func_wrapper():
+            self.t = threading.Timer(sec, func_wrapper)
+            self.t.start()
+            func()
+        self.t = threading.Timer(sec, func_wrapper)
+        self.t.start()
+
+    def cancel(self):
+        self.t.cancel()
+
 
 sio = socketio.Server()
 app = Flask(__name__)
