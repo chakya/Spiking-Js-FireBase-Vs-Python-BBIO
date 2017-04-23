@@ -719,10 +719,13 @@ var motionCount=document.getElementById('motionCount')
 var longHTML=document.getElementById('longMotionHTML')
 var shortHTML=document.getElementById('shortMotionHTML')
 
+//get time in epoch format
 epoch=Math.round(new Date().getTime()/1000.0)
 var myDate = new Date( epoch *1000);
 console.log(epoch)
 console.log(myDate.toGMTString());
+  
+ //Send Toggle led on/off command
     function ledSwitch(){
        if (led.checked===true) {
         socket.emit("ledToggle", 1)
@@ -731,7 +734,8 @@ console.log(myDate.toGMTString());
       socket.emit("ledToggle", 0)
     }
     };
-    
+ 
+  // Send Motion Sensor on/off command
 function motionSwitch(){
        if (motion.checked===true) {
         socket.emit("motionToggle", 1)
@@ -742,15 +746,18 @@ function motionSwitch(){
     }
     };
 
+  //Console log moiton detected
 socket.on('motionDetected', function(state){
   console.log(state)
 });
 
+  // console log time takenn to transmit the data
 socket.on('checkTime', function(epoch){
   epoch2=Math.round(new Date().getTime()/1000.0)
   timeTaken=epoch2-epoch
   console.log(timeTaken)
 });
+
 
 socket.on('longMotionPoll', function(longCount, motionC){
   longHTML.innerHTML=longCount;
