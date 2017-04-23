@@ -34,30 +34,12 @@ io.on('connection', function (socket)
                 if(x.value === 1){
                 console.log("Motion Detected");
                 socket.emit("motionDetected", currentCount)
-                currentCount+=1
             }
                     
                 else
                 {
                 console.log("No Motion Detected");
                      console.log(longCount)
-                     if (currentCount>=3)// if motion more than 3 seconds
-                     {
-                         console.log('long');
-                         longCount+=1;
-                         motionCount+=1;
-                         //pass long count and motion count to be updated in client html 
-                         socket.emit('longMotionPoll',longCount, motionCount)
-                         currentCount=0;
-                     }
-                     else if(currentCount>=1){// if 1<= motion<3 
-                         console.log('short')
-                         shortCount+=1;
-                         motionCount+=1;
-                         //pass short count and motion count to be updated in client html 
-                         socket.emit('shortMotionPoll',shortCount, motionCount)
-                         currentCount=0;
-                     }
             }
         }
          }
