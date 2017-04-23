@@ -10,6 +10,8 @@ print(time.time())
 print(time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(epoch)))
 
 eventlet.monkey_patch()
+
+#Calls the fuction every sec interval
 class setInterval():
     def __init__(self, func, sec):
         def func_wrapper():
@@ -25,8 +27,10 @@ class setInterval():
 
 sio = socketio.Server()
 app = Flask(__name__)
+#test
 sio.emit('motionDetected',1)
 
+//
 def checkPIR():
     client.emit('checkTime',time.time())
     if GPIO.input(motion):
@@ -36,16 +40,16 @@ def checkPIR():
         print('no motion deteted')
         client.emit('motionDetected','LOW')
         
-
+#Return index.html when navigating to the main page
 @app.route('/')
 def index():
     """Serve the client-side application."""
     return render_template('index.html')
-
+#Print SID when connected
 @sio.on('connect')
 def connect(sid, environ):
     print('connect ', sid)
-
+#Call led TOggle function on motionToggle from client
 @sio.on('motionToggle')
 def ledToggle(sid, data):
     global client
@@ -60,7 +64,7 @@ def ledToggle(sid, data):
         t.cancel()
 
 
-
+#On Disconnect print Disconnect sid
 @sio.on('disconnect')
 def disconnect(sid):
     t.cancel()
