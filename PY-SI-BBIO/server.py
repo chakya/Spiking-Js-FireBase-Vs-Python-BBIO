@@ -32,6 +32,12 @@ def ledToggle(sid, data):
     client=sio
     client.emit('motionDetected',2)
     print('motionToggle'+str(data) )
+    if data==1:
+       global t
+       t= setInterval(checkPIR,1)
+    else:
+        print('stop')
+        t.cancel()
 
 
 
