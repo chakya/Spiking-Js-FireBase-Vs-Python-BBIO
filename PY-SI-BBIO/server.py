@@ -6,6 +6,15 @@ import Adafruit_BBIO.GPIO as GPIO
 sio = socketio.Server()
 app = Flask(__name__)
 sio.emit('motionDetected',1)
+
+def checkPIR():
+    client.emit('checkTime',time.time())
+    if GPIO.input(motion):
+        print('motion detected')
+        client.emit('motionDetected','HIGH')
+    else:
+        print('no motion deteted')
+        client.emit('motionDetected','LOW')
         
 
 @app.route('/')
