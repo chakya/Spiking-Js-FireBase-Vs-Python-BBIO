@@ -22,24 +22,9 @@ var db = admin.database();
 var stateRef = db.ref("/State"); // channel name
 var motionData= db.ref("/motionData")
 var pirRef= db.ref("/PIR")
-// ledRef.off()
-
-// ref.on("value", function(snapshot) {   //this callback will be invoked with each new object
-//   console.log(snapshot.val());         // How to retrive the new added object
-// }, function (errorObject) {             // if error
-//   console.log("The read failed: " + errorObject.code);
-// });
-
-// How to push new object
-// ref.push({
-//     id:2,
-//     type:'paradise',
-//     action:'on',
-//     time:127818271
-// });
-
 stateRef.limitToLast(50).on('child_changed', toggle);
-    
+
+//Update Firebase Database when toggled
 function toggle(data){
   console.log('toggled')
   var val = data.val();
@@ -51,11 +36,12 @@ function toggle(data){
   }
 }
 
-
+//Turn LED On/off
 function toggleLed (state) {
   b.digitalWrite(led, state);
 }
 
+//Toggle motion on/off
 function toggleMotion(state){
   if (state===1)// if checked activate motion detector
   {
@@ -65,7 +51,7 @@ function toggleMotion(state){
   }
   
 
-    
+ //Update the Database with time and motion input   
     function printStatus(x) 
     {
       
